@@ -1,0 +1,58 @@
+.kanban-container {
+  padding: 20px;
+}
+
+.kanban-column {
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  min-height: 500px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.column-header {
+  background-color: #6c757d;
+  color: white;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.candidate-card {
+  cursor: grab;
+  transition: all 0.3s ease;
+}
+
+.candidate-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.candidate-card.dragging {
+  opacity: 0.5;
+}
+
+.column-over {
+  background-color: #e9ecef;
+}
+
+.candidate-score {
+  margin-top: 8px;
+}
+
+.star {
+  color: #d1d1d1;
+  font-size: 18px;
+  margin-right: 2px;
+}
+
+.star.filled {
+  color: #ffc107;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .kanban-column {
+    min-height: 300px;
+    margin-bottom: 20px;
+  }
+}

@@ -1,7 +1,9 @@
 import React from 'react';
 import { Card, Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 type Position = {
+    id: string;
     title: string;
     manager: string;
     deadline: string;
@@ -9,12 +11,27 @@ type Position = {
 };
 
 const mockPositions: Position[] = [
-    { title: 'Senior Backend Engineer', manager: 'John Doe', deadline: '2024-12-31', status: 'Abierto' },
-    { title: 'Junior Android Engineer', manager: 'Jane Smith', deadline: '2024-11-15', status: 'Contratado' },
-    { title: 'Product Manager', manager: 'Alex Jones', deadline: '2024-07-31', status: 'Borrador' }
+    {
+        title: 'Senior Backend Engineer', manager: 'John Doe', deadline: '2024-12-31', status: 'Abierto',
+        id: '123'
+    },
+    {
+        title: 'Junior Android Engineer', manager: 'Jane Smith', deadline: '2024-11-15', status: 'Contratado',
+        id: '442'
+    },
+    {
+        title: 'Product Manager', manager: 'Alex Jones', deadline: '2024-07-31', status: 'Borrador',
+        id: '445'
+    }
 ];
 
 const Positions: React.FC = () => {
+    const navigate = useNavigate();
+
+    const handleViewProcess = (positionId: string) => {
+        navigate(`/positions/${positionId}/kanban`);
+    };
+
     return (
         <Container className="mt-5">
             <h2 className="text-center mb-4">Posiciones</h2>
@@ -44,8 +61,8 @@ const Positions: React.FC = () => {
                 </Col>
             </Row>
             <Row>
-                {mockPositions.map((position, index) => (
-                    <Col md={4} key={index} className="mb-4">
+                {mockPositions.map((position) => (
+                    <Col md={4} key={position.id} className="mb-4">
                         <Card className="shadow-sm">
                             <Card.Body>
                                 <Card.Title>{position.title}</Card.Title>
@@ -57,7 +74,12 @@ const Positions: React.FC = () => {
                                     {position.status}
                                 </span>
                                 <div className="d-flex justify-content-between mt-3">
-                                    <Button variant="primary">Ver proceso</Button>
+                                    <Button
+                                        variant="primary"
+                                        onClick={() => handleViewProcess(position.id)}
+                                    >
+                                        Ver proceso
+                                    </Button>
                                     <Button variant="secondary">Editar</Button>
                                 </div>
                             </Card.Body>
